@@ -1,0 +1,12 @@
+---
+ - name: configuration du systeme
+   hosts: worker1
+   become: true
+   
+   gather_facts: false
+   roles:
+#    - update 
+     - directory 
+     - touch
+     - copy
+     - docker

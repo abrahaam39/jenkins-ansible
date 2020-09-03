@@ -1,0 +1,17 @@
+---
+ - name: copier plusieurs fichiers
+   hosts: worker1
+   become: true
+   gather_facts: false
+   tasks:
+   #  - name: Display paths of all souna file in touch
+   #  - debug: msg={{ lookup('fileglob', '/home/vagrant/touch/souna*') }}
+
+     - name: Copier plusieurs fichiers dans copy
+       copy:
+         src: "{{ item }}"
+         dest: /home/vagrant/copy/
+         
+         mode: 0600
+       with_fileglob:
+          - "/home/vagrant/touch/*"

@@ -1,0 +1,13 @@
+---
+  - name: create single file
+    command: "touch /home/vagrant/souna/souna1"
+    args: 
+      creates: /home/vagrant/souna/souna1
+
+  - name: create multiple files
+    command: "touch /home/vagrant/souna{{ item }}"
+    with_items:
+      - [1,2,3,6,5,4,7,8,9]
+    args:
+      creates: /home/vagrant/souna{{ item }}	
+

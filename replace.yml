@@ -1,0 +1,12 @@
+--- 
+  - name : replace module 
+    hosts: worker1
+    become: true
+    gather_ facts: false
+    tasks:
+    - replace a string by another
+      replace:
+         path: /home/vagrant/saroura
+         regexp: 'saroura'
+         replace: 'souna'
+         backup: yes

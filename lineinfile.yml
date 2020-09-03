@@ -1,0 +1,12 @@
+--- 
+  - name: replace name in file
+    hosts: worker1 
+    become: true
+    tasks:
+      - name: replace line
+        lineinfile:
+           path: /home/vagrant/hosts
+           regexp: '^port: 22'
+           line: 'port: 5000'
+
+

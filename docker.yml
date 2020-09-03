@@ -1,0 +1,23 @@
+---
+  - name: restart docker service
+    hosts: worker1
+    tasks:
+      - name: restart docker
+        register: docker
+        become: yes
+        command: "service docker start"
+      - debug: 
+         var: docker
+      - name: verification du start docker
+        register: dockerverif
+        command: "echo 'docker is running'"
+        when: docker is changed
+      - debug:
+         var: dockerverif.stdout
+      - name: afficher contenu de snode
+        command: "ls -altr"
+        register: souna
+      - debug:
+         var: souna.stdout_lines
+         
+  

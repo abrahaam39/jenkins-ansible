@@ -1,0 +1,20 @@
+--- 
+ - name: user management
+   hosts: worker1
+   become: true
+   gather_facts: false
+   tasks: 
+     - name: add user abrahaam
+       user:
+         name: abrahaam
+         password: barhoum
+         shell: /bin/bash
+         comment: barhoum abidi
+         groups: docker
+         group: vagrant
+         append: yes
+         uid: 1070
+         generate_ssh_key: yes
+         ssh_key_bits: 2048
+         ssh_key_file: .ssh/id_rsa
+         

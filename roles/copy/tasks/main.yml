@@ -1,0 +1,13 @@
+---
+  - name:  listing files for copy
+    shell: "find /home/vagrant/touch/souna* -type f"
+    register: files
+  - name: copying many files
+    copy:
+      src: "{{ item }}"
+      dest: /home/vagrant/souna
+      mode: 760
+      remote_src: True
+    with_items: 
+      - "{{ files.stdout_lines }}"
+     

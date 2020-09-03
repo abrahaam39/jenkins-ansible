@@ -1,0 +1,12 @@
+---
+ - name: verifier un repertoire vide
+   hosts: worker1
+   become: True
+   tasks:
+     - name: List directory contents
+       shell: ls /home/vagrant/souna
+       register: dir_cont
+     - name: Check if directory is empty
+       debug:
+         msg: "Directory is empty."
+       when: dir_cont.stdout == ""

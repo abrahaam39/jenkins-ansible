@@ -1,0 +1,10 @@
+--- 
+  - name: creation de groupe
+    hosts: worker1
+    become: true
+    tasks:
+    - name: groupe grp
+      group:
+        name: grp
+        state: present
+ #       gid: 1080

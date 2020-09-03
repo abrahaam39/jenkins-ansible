@@ -1,0 +1,17 @@
+--- 
+ - name: reboot a remote machine
+   hosts: worker1
+   become: true
+   gather_facts: false
+   tasks:
+   - name: reboot 
+     reboot:
+       reboot_timeout: 700
+       msg: "host going to reboot"
+       test_command: "echo 'welcome'"
+       post_reboot_delay: 30
+     register: reboot
+    
+   - debug:
+       msg: "machine rebooted"
+       

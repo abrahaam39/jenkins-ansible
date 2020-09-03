@@ -1,0 +1,24 @@
+---
+ - name: copying files
+   hosts: worker1
+   become: true
+   become_user: abrahaam
+   tasks:
+     - name: create new directory
+       file:
+         path: /home/abrahaam/copy
+         state: directory
+       register: file
+     - name: verifier la creation de copy
+       shell: echo " copy created "
+       register: created
+       when: file is changed
+     - debug:
+         var: created.stdout
+     - name: copy single file
+       copy:
+          src: /home/abrahaam/touch/souna1
+          dest: /home/abrahaam/copy
+          mode: 700
+          remote_src: true
+

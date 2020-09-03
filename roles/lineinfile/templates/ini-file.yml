@@ -1,0 +1,12 @@
+--- 
+ - name: verifier que le ssh port est 5000
+   hosts: worker1
+   become: true
+   tasks:
+     - name: verifier port  5000
+       ini_file:
+         path: /home/vagrant/hosts
+         section: default 
+         option: port
+         value: '5000'
+         backup: yes

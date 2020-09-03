@@ -1,0 +1,15 @@
+---
+ 
+
+    - name: create souna
+      file: 
+         path: /home/vagrant/souna
+         state: directory
+         mode: 0755
+      register: dir
+    - name: verifier si souna est crée
+      command: "echo 'directory created'"
+      register: created
+      when: dir is changed
+    - debug:
+         var: created.stdout

@@ -1,0 +1,20 @@
+--- 
+ - name: copying files
+   hosts: worker1
+   become: true
+   become_user: vagrant
+   gather_facts: false
+   tasks:
+     - name: fichiers à copier
+       shell: "find ~/touch/souna* -type f"
+       register: files
+     - name: copy multiple files
+       copy:
+          src: "{{ item }}"
+          dest: ~/copy
+          mode: 700
+         
+          remote_src: true 
+       with_items:
+          - "{{ files.stdout_lines }}"   
+       

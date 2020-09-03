@@ -1,0 +1,11 @@
+---
+ - name: git
+   hosts: worker1
+   become: true
+   gather_facts: false
+   tasks:
+     - name: cloner un repo git
+       git:
+         repo: https://github.com/abrahaam39/app1.git
+         dest: /home/vagrant/app1
+         

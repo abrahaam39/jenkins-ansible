@@ -1,0 +1,20 @@
+---
+ - name: verification de l'etat des serveurs
+   hosts: worker1
+   become: yes
+   tasks:
+     - name: etat service docker
+       service:
+          name: docker
+          state: started
+          enabled: false
+       
+       register: docker 
+     - name : apt
+       apt:
+         name: vim
+         state: present
+         
+     - debug:
+         var: docker.stdout
+  

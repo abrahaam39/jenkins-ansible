@@ -1,0 +1,32 @@
+---
+ - name: create multiple files
+   hosts: worker1
+   become: true
+   
+   tasks: 
+     - name: create 3 files
+       shell: "touch souna{{ item }}"
+
+   
+       with_items:
+         - [12,1,2,5,4,5,8,7,88,44,55,445,547]
+       args:
+         chdir: /home/vagrant/touch
+         creates: souna{{ item }}
+     - name: copying files
+       command: "cp  /home/vagrant/touch/souna2  /home/abrahaam/"
+       register: copy
+     - name: verification du copie
+       command: "echo 'file copied'"
+       register: copied
+       when: copy is changed
+     - debug:
+         var: copied.stdout
+     - name: update packages
+       command: "apt install {{ item }}"
+       loop:
+         - vim
+         - curl
+  #   - name: system update    
+ #      command: "apt update"
+    
